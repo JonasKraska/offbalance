@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  mysql:
+    image: mariadb:10.3.28
+    environment:
+      MYSQL_DATABASE: offbalance
+      MYSQL_ROOT_PASSWORD: offbalance
+      MYSQL_USER: offbalance
+      MYSQL_PASSWORD: offbalance
+    volumes:
+      - mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+  phpmyadmin:
+    image: phpmyadmin:latest
+    environment:
+      - PMA_HOST=mysql
+    ports:
+      - 8888:80
+    depends_on:
+      - mysql
+volumes:
+  mysql:
